@@ -5,13 +5,20 @@ export default function Navbar({ activeSection, isMobileMenuOpen, setIsMobileMen
     <>
       <nav className="fixed top-0 left-0 right-0 bg-[#0A0A0A] bg-opacity-90 backdrop-blur-sm z-50 shadow-lg py-4 px-6 md:px-20 lg:px-40 rounded-b-lg border-b border-gray-800">
         <div className="container mx-auto flex justify-between items-center">
-          <button onClick={() => scrollToSection('home')} className="text-2xl font-bold text-teal-400">Saloni</button>
+          <button
+            onClick={() => scrollToSection('home')}
+            className="text-2xl font-bold text-teal-400"
+          >
+            Saloni
+          </button>
           <ul className="hidden md:flex space-x-8">
             {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
               <li key={section}>
                 <button
                   onClick={() => scrollToSection(section)}
-                  className={`relative text-lg font-medium transition-colors duration-300 hover:text-teal-400 ${activeSection === section ? 'text-teal-400' : 'text-gray-300'}`}
+                  className={`relative text-lg font-medium transition-colors duration-300 hover:text-teal-400 ${
+                    activeSection === section ? 'text-teal-400' : 'text-gray-300'
+                  }`}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
                   {activeSection === section && (
@@ -47,23 +54,37 @@ export default function Navbar({ activeSection, isMobileMenuOpen, setIsMobileMen
             {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
               <li key={section}>
                 <button
-                  onClick={() => scrollToSection(section)}
-                  className={`block text-gray-300 hover:text-teal-400 transition-colors duration-300 ${activeSection === section ? 'text-teal-400 font-semibold' : ''}`}
+                  onClick={() => {
+                    scrollToSection(section);
+                    setIsMobileMenuOpen(false); // close after click
+                  }}
+                  className={`block text-gray-300 hover:text-teal-400 transition-colors duration-300 ${
+                    activeSection === section ? 'text-teal-400 font-semibold' : ''
+                  }`}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
                 </button>
               </li>
             ))}
           </ul>
+
+          {/* Social Links */}
           <div className="flex space-x-6 text-3xl mt-10">
-            <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors duration-300">
+            <a
+              href="https://www.linkedin.com/in/saloni-maheshwari-189b6632a"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-blue-600 transition-colors duration-300"
+            >
               <i className="fab fa-linkedin"></i>
             </a>
-            <a href="#" className="text-gray-400 hover:text-gray-300 transition-colors duration-300">
+            <a
+              href="https://github.com/salonimaheshwari98"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-gray-300 transition-colors duration-300"
+            >
               <i className="fab fa-github"></i>
-            </a>
-            <a href="#" className="text-gray-400 hover:text-blue-500 transition-colors duration-300">
-              <i className="fab fa-twitter"></i>
             </a>
           </div>
         </div>
